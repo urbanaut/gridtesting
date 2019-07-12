@@ -1,0 +1,14 @@
+docker pull selenium/hub
+docker pull selenium/node-chrome-debug
+docker pull selenium/node-firefox-debug
+
+docker run -d -p 4446:4444 --name selenium-hub -P selenium/hub
+docker run -d -P --link selenium-hub:hub selenium/node-chrome-debug
+docker run -d -P --link selenium-hub:hub selenium/node-firefox-debug
+
+docker logs selenium-hub
+docker ps -a
+
+docker-machine ip (returns the IP being used as the "localhost" address)
+
+Navigate in the browser to <docker ip>:4444/grid/hub (e.g., http://192.168.99.100:4444/grid/console)
